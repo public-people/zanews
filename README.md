@@ -1,4 +1,5 @@
-[![codecov](https://codecov.io/gh/public-people/zanews//branch/master/graph/badge.svg)](https://codecov.io/gh/public-people/zanews/) [![Build Status](https://travis-ci.org/public-people/zanews.png)](https://travis-ci.org/public-people/zanews)"
+[![codecov](https://codecov.io/gh/public-people/zanews/branch/master/graph/badge.svg)](https://codecov.io/gh/public-people/zanews/)
+[![Build Status](https://travis-ci.org/public-people/zanews.png)](https://travis-ci.org/public-people/zanews)
 
 South African News Archive
 ===============================
