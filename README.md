@@ -5,9 +5,9 @@ South African News Archive
 Complete project setup
 ----------------------
 
-- [ ] Initialise a git repository in this directory
-  - [ ] Explicitly add directories needed for collectstatic to work: `git add -f staticfiles/.gitkeep end_to_end_test/static/.gitkeep`
-- [ ] Create a repository on [GitHub](https://github.com/OpenUpSA) and add as a remote to this repository
+- [x] Initialise a git repository in this directory
+  - [x] Explicitly add directories needed for collectstatic to work: `git add -f staticfiles/.gitkeep end_to_end_test/static/.gitkeep`
+- [x] Create a repository on [GitHub](https://github.com/OpenUpSA) and add as a remote to this repository
   - e.g. `git remote add origin git@github.com:OpenUpSA/zanews.git`
 - [ ] Enable Continuous Integration checks for the GitHub Repository at [travis-ci.org](https://travis-ci.org)
 - [ ] Enable code coverage reporting for the project at [codecov.io](https://codecov.io)
