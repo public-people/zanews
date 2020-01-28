@@ -10,7 +10,7 @@ class Article(TimeStampedModel):
     publication = models.ForeignKey(Publication, on_delete=models.CASCADE)
     body_html = models.TextField(blank=True, help_text="The raw original HTML. Kept to be able to re-extract plain text if needed")
     body_text = models.TextField(blank=True, db_index=True)
-    byline = models.TextField(bank=True)
+    byline = models.TextField(blank=True)
     file_name = models.TextField()
     published_at = models.DateTimeField()
     retrieved_at = models.DateTimeField()
