@@ -6,6 +6,7 @@ class PublicationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Publication
         fields = ["name", "slug", "url"]
+        extra_kwargs = {"url": {"lookup_field": "slug"}}
 
 
 class ArticleSerializer(serializers.HyperlinkedModelSerializer):
@@ -25,4 +26,5 @@ class ArticleSerializer(serializers.HyperlinkedModelSerializer):
         ]
         extra_kwargs = {
             "body_html": {"write_only": True},
+            "publication": {"lookup_field": "slug"},
         }

@@ -1,0 +1,12 @@
+[
+{
+  "model": "articles.publication",
+  "pk": 1,
+  "fields": {
+    "created": "2020-01-31T22:20:04.696Z",
+    "modified": "2020-01-31T22:20:04.696Z",
+    "name": "Something Times",
+    "slug": "something-times"
+  }
+}
+]
