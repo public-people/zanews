@@ -13,6 +13,7 @@ services:
       - db
     environment:
       - DATABASE_URL=postgresql://zanews@db/zanews
+      - DJANGO_DEBUG=True
       - DJANGO_DEBUG_TOOLBAR=${DJANGO_DEBUG_TOOLBAR}
       - DJANGO_SECRET_KEY=not-secret-in-dev
       - DJANGO_WHITENOISE_AUTOREFRESH=True
