@@ -23,6 +23,7 @@ class CreatePublicationTests(APITestCase):
         """
         Ensure that AnonymousUser can not create a new publication object.
         """
+        self.client.force_authenticate(user=None)
         url = reverse("publication-list")
         data = {
             "name": "Wednesday Moon",
