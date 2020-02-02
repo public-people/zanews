@@ -153,7 +153,7 @@ logging.config.dictConfig(
         },
         "loggers": {
             # root logger
-            "": {"level": "WARNING", "handlers": ["console"],},
+            "": {"level": "INFO", "handlers": ["console"],},
         },
     }
 )
@@ -169,5 +169,6 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
     ],
 }

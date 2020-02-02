@@ -7,7 +7,6 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
 
-
 TAG_BLACKLIST = {
     "[document]",
     "noscript",
@@ -25,6 +24,9 @@ class Publication(TimeStampedModel):
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
 
+    class Meta:
+        ordering = ['name']
+
 
 class Article(TimeStampedModel):
     publication = models.ForeignKey(Publication, on_delete=models.CASCADE)
@@ -38,11 +40,14 @@ class Article(TimeStampedModel):
     body_text = models.TextField(blank=True, db_index=True)
     byline = models.TextField(blank=True)
     file_name = models.TextField()
-    published_at = models.DateTimeField()
+    published_at = models.DateTimeField(db_index=True)
     retrieved_at = models.DateTimeField()
     spider_name = models.CharField(max_length=50)
-    title = models.CharField(max_length=300)
+    title = models.CharField(max_length=300, db_index=True)
     published_url = models.CharField(max_length=2048, unique=True)
+
+    class Meta:
+        ordering = ['-published_at']
 
     def save(self, *args, **kwargs):
         soup = BeautifulSoup(self.body_html, "html.parser")

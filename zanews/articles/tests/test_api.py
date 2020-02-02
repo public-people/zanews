@@ -28,7 +28,6 @@ class CreatePublicationTests(APITestCase):
         """
         Ensure that an aunauthorised user can not create a new publication object.
         """
-        self.client.force_authenticate(user=None)
         url = reverse("publication-list")
         data = {
             "name": "Wednesday Moon",
@@ -54,7 +53,7 @@ class CreatePublicationTests(APITestCase):
         self.assertEqual(models.Publication.objects.count(), 0)
 
 
-class ArticleTests(APITestCase):
+class CreateArticleTests(APITestCase):
     fixtures = ["groups", "api_create_article"]
 
     def test_create_article(self):
@@ -125,3 +124,48 @@ class ArticleTests(APITestCase):
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertEqual(models.Article.objects.count(), 0)
+
+
+class SearchArticleTests(APITestCase):
+    fixtures = ["groups", "api_search_article"]
+
+    def test_search_title(self):
+        """
+        Title matches regardless of case
+        """
+        data = {"search": "tinker belle"}
+        response = self.client.get(reverse("article-list"), data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["count"], 1)
+
+    def test_search_body(self):
+        """
+        Body matches regardless of case
+        """
+        data = {"search": "peter pan"}
+        response = self.client.get(reverse("article-list"), data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["count"], 1)
+
+    def test_search_no_match(self):
+        """
+        No results when document doesn't match at all
+        """
+        data = {"basic_web_search": "none of this occurs in any article"}
+        response = self.client.get(reverse("article-list"), data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["count"], 0)
+
+    def test_search_exact_phrase(self):
+        """
+        Exact phrase matches, unordered phrase doesn't match.
+        """
+        data = {"basic_web_search": '"peter pan"'}
+        response = self.client.get(reverse("article-list"), data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["count"], 1)
+
+        data = {"basic_web_search": '"pan peter"'}
+        response = self.client.get(reverse("article-list"), data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["count"], 0)

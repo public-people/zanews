@@ -3,6 +3,8 @@ from . import models
 from rest_framework import viewsets
 from .serializers import PublicationSerializer, ArticleSerializer
 from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import FullTextSearchFilter
 
 
 class Index(generic.TemplateView):
@@ -29,3 +31,4 @@ class ArticleViewSet(viewsets.ModelViewSet):
     permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     queryset = models.Article.objects.all()
     serializer_class = ArticleSerializer
+    filter_backends = [DjangoFilterBackend, FullTextSearchFilter]
