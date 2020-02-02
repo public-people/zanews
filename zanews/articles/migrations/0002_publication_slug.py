@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('articles', '0001_initial'),
+        ("articles", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='publication',
-            name='slug',
-            field=models.SlugField(default='foobar', max_length=200, unique=True),
+            model_name="publication",
+            name="slug",
+            field=models.SlugField(default="foobar", max_length=200, unique=True),
             preserve_default=False,
         ),
     ]

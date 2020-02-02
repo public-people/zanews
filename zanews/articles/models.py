@@ -25,7 +25,7 @@ class Publication(TimeStampedModel):
     slug = models.SlugField(max_length=200, unique=True)
 
     class Meta:
-        ordering = ['name']
+        ordering = ["name"]
 
 
 class Article(TimeStampedModel):
@@ -47,7 +47,7 @@ class Article(TimeStampedModel):
     published_url = models.CharField(max_length=2048, unique=True)
 
     class Meta:
-        ordering = ['-published_at']
+        ordering = ["-published_at"]
 
     def save(self, *args, **kwargs):
         soup = BeautifulSoup(self.body_html, "html.parser")

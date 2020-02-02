@@ -12,8 +12,8 @@ class CreatePublicationTests(APITestCase):
         """
         Ensure we can create a new publication object.
         """
-        token = Token.objects.get(user__username='authorised-user')
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+        token = Token.objects.get(user__username="authorised-user")
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
         url = reverse("publication-list")
         data = {
             "name": "Wednesday Moon",
@@ -41,8 +41,8 @@ class CreatePublicationTests(APITestCase):
         """
         Ensure that AnonymousUser can not create a new publication object.
         """
-        token = Token.objects.get(user__username='unauthorised-user')
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+        token = Token.objects.get(user__username="unauthorised-user")
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
         url = reverse("publication-list")
         data = {
             "name": "Wednesday Moon",
@@ -60,8 +60,8 @@ class CreateArticleTests(APITestCase):
         """
         Ensure we can create a new article object.
         """
-        token = Token.objects.get(user__username='authorised-user')
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+        token = Token.objects.get(user__username="authorised-user")
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
         data = {
             "publication": reverse(
                 "publication-detail", args=[models.Publication.objects.first().slug]
@@ -84,8 +84,8 @@ class CreateArticleTests(APITestCase):
         """
         Ensure an unauthorised user can not create a new article object.
         """
-        token = Token.objects.get(user__username='unauthorised-user')
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+        token = Token.objects.get(user__username="unauthorised-user")
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
         data = {
             "publication": reverse(
                 "publication-detail", args=[models.Publication.objects.first().slug]

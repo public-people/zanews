@@ -9,45 +9,92 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Publication',
+            name="Publication",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', django_extensions.db.fields.CreationDateTimeField(auto_now_add=True, verbose_name='created')),
-                ('modified', django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name='modified')),
-                ('name', models.CharField(max_length=200, unique=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    django_extensions.db.fields.CreationDateTimeField(
+                        auto_now_add=True, verbose_name="created"
+                    ),
+                ),
+                (
+                    "modified",
+                    django_extensions.db.fields.ModificationDateTimeField(
+                        auto_now=True, verbose_name="modified"
+                    ),
+                ),
+                ("name", models.CharField(max_length=200, unique=True)),
             ],
             options={
-                'ordering': ('-modified', '-created'),
-                'get_latest_by': 'modified',
-                'abstract': False,
+                "ordering": ("-modified", "-created"),
+                "get_latest_by": "modified",
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Article',
+            name="Article",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', django_extensions.db.fields.CreationDateTimeField(auto_now_add=True, verbose_name='created')),
-                ('modified', django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name='modified')),
-                ('body_html', models.TextField(blank=True, help_text='The raw original HTML. Kept to be able to re-extract plain text if needed')),
-                ('body_text', models.TextField(blank=True, db_index=True)),
-                ('byline', models.TextField(blank=True)),
-                ('file_name', models.TextField()),
-                ('published_at', models.DateTimeField()),
-                ('retrieved_at', models.DateTimeField()),
-                ('spider_name', models.CharField(max_length=50)),
-                ('title', models.CharField(max_length=300)),
-                ('url', models.CharField(max_length=2048, unique=True)),
-                ('publication', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='articles.Publication')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    django_extensions.db.fields.CreationDateTimeField(
+                        auto_now_add=True, verbose_name="created"
+                    ),
+                ),
+                (
+                    "modified",
+                    django_extensions.db.fields.ModificationDateTimeField(
+                        auto_now=True, verbose_name="modified"
+                    ),
+                ),
+                (
+                    "body_html",
+                    models.TextField(
+                        blank=True,
+                        help_text="The raw original HTML. Kept to be able to re-extract plain text if needed",
+                    ),
+                ),
+                ("body_text", models.TextField(blank=True, db_index=True)),
+                ("byline", models.TextField(blank=True)),
+                ("file_name", models.TextField()),
+                ("published_at", models.DateTimeField()),
+                ("retrieved_at", models.DateTimeField()),
+                ("spider_name", models.CharField(max_length=50)),
+                ("title", models.CharField(max_length=300)),
+                ("url", models.CharField(max_length=2048, unique=True)),
+                (
+                    "publication",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="articles.Publication",
+                    ),
+                ),
             ],
             options={
-                'ordering': ('-modified', '-created'),
-                'get_latest_by': 'modified',
-                'abstract': False,
+                "ordering": ("-modified", "-created"),
+                "get_latest_by": "modified",
+                "abstract": False,
             },
         ),
     ]

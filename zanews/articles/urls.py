@@ -4,8 +4,8 @@ from . import views
 
 
 api_router = routers.DefaultRouter()
-api_router.register(r'publications', views.PublicationViewSet)
-api_router.register(r'articles', views.ArticleViewSet)
+api_router.register(r"publications", views.PublicationViewSet)
+api_router.register(r"articles", views.ArticleViewSet)
 
 
 urlpatterns = [
