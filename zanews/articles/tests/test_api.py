@@ -1,8 +1,8 @@
 from django.urls import reverse
-from rest_framework.test import APITestCase
 from rest_framework import status
-from zanews.articles import models
 from rest_framework.authtoken.models import Token
+from rest_framework.test import APITestCase
+from zanews.articles import models
 
 
 class CreatePublicationTests(APITestCase):

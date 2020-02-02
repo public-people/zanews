@@ -1,10 +1,11 @@
 from django.views import generic
-from . import models
-from rest_framework import viewsets
-from .serializers import PublicationSerializer, ArticleSerializer
-from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets
+from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly
+
+from . import models
 from .filters import FullTextSearchFilter
+from .serializers import ArticleSerializer, PublicationSerializer
 
 
 class Index(generic.TemplateView):

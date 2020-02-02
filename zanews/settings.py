@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import logging.config
+
 import environ
 
 ROOT_DIR = environ.Path(__file__) - 2
@@ -134,7 +136,6 @@ STATICFILES_DIRS = [
 WHITENOISE_AUTOREFRESH = env.bool("DJANGO_WHITENOISE_AUTOREFRESH", False)
 
 
-import logging.config
 
 LOGGING_CONFIG = None
 logging.config.dictConfig(

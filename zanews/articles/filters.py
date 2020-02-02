@@ -1,7 +1,7 @@
-from rest_framework.filters import BaseFilterBackend
-from django.contrib.postgres.search import SearchQuery, SearchVector
 import re
 
+from django.contrib.postgres.search import SearchQuery, SearchVector
+from rest_framework.filters import BaseFilterBackend
 
 PHRASE_RE = re.compile(r'"([^"]*)("|$)')
 
