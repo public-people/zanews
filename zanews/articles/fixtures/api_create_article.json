@@ -1,0 +1,50 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$150000$b9hOO3pLeTuT$zXu1NUtSRsGXe8Vt5/oA/AZp/aUMapf6CUFrbmVyhao=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "unauthorised-user",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-02-01T17:15:39Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+,
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$150000$b9hOO3pLeTuT$zXu1NUtSRsGXe8Vt5/oA/AZp/aUMapf6CUFrbmVyhao=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "authorised-user",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-02-01T17:15:39Z",
+    "groups": [
+      [
+        "Uploaders"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "articles.publication",
+  "fields": {
+    "created": "2020-01-31T22:20:04.696Z",
+    "modified": "2020-01-31T22:20:04.696Z",
+    "name": "Something Times",
+    "slug": "something-times"
+  }
+}
+]

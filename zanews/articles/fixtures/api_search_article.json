@@ -1,0 +1,29 @@
+[
+{
+  "model": "articles.publication",
+  "pk": 1,
+  "fields": {
+    "created": "2020-01-31T22:20:04.696Z",
+    "modified": "2020-01-31T22:20:04.696Z",
+    "name": "Something Times",
+    "slug": "something-times"
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 1,
+  "fields": {
+    "created": "2020-01-31T22:20:04.696Z",
+    "modified": "2020-01-31T22:20:04.696Z",
+    "publication": 1,
+    "byline": "Fred Bloggs",
+    "body_html": "<p>If Peter Pan could fly</p>",
+    "body_text": "If Peter Pan could fly",
+    "published_at": "2001-01-02T03:04:00.696Z",
+    "retrieved_at": "2002-03-04T05:06:00.696Z",
+    "spider_name": "wed_moon",
+    "title": "Tinker Belle changes name",
+    "published_url": "https://example.com/it-happened"
+  }
+}
+]

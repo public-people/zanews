@@ -1,6 +1,6 @@
-from django.test import Client, TestCase
-
 import html5lib
+
+from django.test import Client, TestCase
 
 
 class IndexTestCase(TestCase):

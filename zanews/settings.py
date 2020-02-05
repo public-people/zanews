@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import logging.config
+
 import environ
 
 ROOT_DIR = environ.Path(__file__) - 2
@@ -46,6 +48,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
+    "rest_framework",
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
@@ -127,12 +131,11 @@ STATICFILES_DIRS = [
     str(PROJ_DIR.path("static")),
     str(ROOT_DIR.path("assets/bundles")),
 ]
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 WHITENOISE_AUTOREFRESH = env.bool("DJANGO_WHITENOISE_AUTOREFRESH", False)
 
 
-import logging.config
 
 LOGGING_CONFIG = None
 logging.config.dictConfig(
@@ -151,7 +154,7 @@ logging.config.dictConfig(
         },
         "loggers": {
             # root logger
-            "": {"level": "WARNING", "handlers": ["console"],},
+            "": {"level": "INFO", "handlers": ["console"],},
         },
     }
 )
@@ -160,3 +163,13 @@ logging.config.dictConfig(
 TAG_MANAGER_ENABLED = env.bool("TAG_MANAGER_ENABLED", True)
 if TAG_MANAGER_ENABLED:
     TAG_MANAGER_CONTAINER_ID = env.get("TAG_MANAGER_CONTAINER_ID")
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+}

@@ -1,0 +1,50 @@
+[
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Uploaders",
+    "permissions": [
+      [
+        "add_article",
+        "articles",
+        "article"
+      ],
+      [
+        "change_article",
+        "articles",
+        "article"
+      ],
+      [
+        "delete_article",
+        "articles",
+        "article"
+      ],
+      [
+        "view_article",
+        "articles",
+        "article"
+      ],
+      [
+        "add_publication",
+        "articles",
+        "publication"
+      ],
+      [
+        "change_publication",
+        "articles",
+        "publication"
+      ],
+      [
+        "delete_publication",
+        "articles",
+        "publication"
+      ],
+      [
+        "view_publication",
+        "articles",
+        "publication"
+      ]
+    ]
+  }
+}
+]
