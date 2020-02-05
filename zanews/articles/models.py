@@ -5,6 +5,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django_extensions.db.models import TimeStampedModel
 from rest_framework.authtoken.models import Token
+from django.contrib.postgres.search import SearchVectorField
+
 
 TAG_BLACKLIST = {
     "[document]",
@@ -35,15 +37,16 @@ class Article(TimeStampedModel):
             "The raw original HTML."
             " Kept to be able to re-extract plain text if needed"
         ),
+        null=True,
     )
-    body_text = models.TextField(blank=True, db_index=True)
-    byline = models.TextField(blank=True)
-    file_name = models.TextField()
+    body_text = models.TextField(blank=True, null=True)
+    byline = models.TextField(blank=True, null=True)
     published_at = models.DateTimeField(db_index=True)
     retrieved_at = models.DateTimeField()
-    spider_name = models.CharField(max_length=50)
-    title = models.CharField(max_length=300, db_index=True)
-    published_url = models.CharField(max_length=2048, unique=True)
+    spider_name = models.CharField(max_length=50, null=True)
+    title = models.CharField(max_length=300, null=True)
+    published_url = models.TextField(unique=True)
+    full_text_search = SearchVectorField(null=True)
 
     class Meta:
         ordering = ["-published_at"]

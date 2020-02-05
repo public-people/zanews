@@ -16,7 +16,6 @@ class ArticleSerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             "body_html",
             "byline",
-            "file_name",
             "publication",
             "published_at",
             "retrieved_at",

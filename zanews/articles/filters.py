@@ -39,8 +39,6 @@ class FullTextSearchFilter(BaseFilterBackend):
             if terms or phrases:
                 print(compound_statement)
 
-                queryset = queryset.annotate(
-                    search=SearchVector("title", "body_text")
-                ).filter(search=compound_statement)
+                queryset = queryset.filter(full_text_search=compound_statement)
 
         return queryset
