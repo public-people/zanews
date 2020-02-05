@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from django_extensions.db.models import TimeStampedModel
 from rest_framework.authtoken.models import Token
 from django.contrib.postgres.search import SearchVectorField
+from django.contrib.postgres.indexes import GinIndex
 
 
 TAG_BLACKLIST = {
@@ -50,6 +51,7 @@ class Article(TimeStampedModel):
 
     class Meta:
         ordering = ["-published_at"]
+        indexes = [GinIndex(fields=["full_text_search"])]
 
     def save(self, *args, **kwargs):
         soup = BeautifulSoup(self.body_html, "html.parser")
