@@ -2,6 +2,9 @@ import re
 
 from django.contrib.postgres.search import SearchQuery, SearchVector
 from rest_framework.filters import BaseFilterBackend
+from django import forms
+from django.utils.safestring import mark_safe
+
 
 PHRASE_RE = re.compile(r'"([^"]*)("|$)')
 
@@ -42,3 +45,11 @@ class FullTextSearchFilter(BaseFilterBackend):
                 queryset = queryset.filter(full_text_search=compound_statement)
 
         return queryset
+
+    def to_html(self, request, queryset, view):
+        fields = FullTextSearchForm().as_p()
+        return mark_safe(f'<form action="" method="get">{ fields }</form>')
+
+
+class FullTextSearchForm(forms.Form):
+    basic_web_search = forms.CharField(label='Search query')
