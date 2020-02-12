@@ -1,1 +1,1 @@
-web: gunicorn --worker-class gevent publicpeople.wsgi:application --log-file -
+web: gunicorn --worker-class gevent zanews.wsgi:application --log-file -
