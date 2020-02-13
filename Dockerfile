@@ -30,7 +30,7 @@ USER django
 
 WORKDIR /app
 
-RUN yarn && yarn build \
-    # collectstic inside build only makes sense when serving assets from the
-    # container e.g. using whitenoise.
-    && DJANGO_SECRET_KEY=buildtime python manage.py collectstatic --noinput
+RUN yarn && yarn build
+
+EXPOSE 5000
+CMD /app/bin/start.sh
