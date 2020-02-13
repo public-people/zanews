@@ -23,7 +23,7 @@ RUN cd /tmp \
 COPY . /app
 
 RUN cd /app \
-    && yarn %% yarn build \
+    && yarn && yarn build \
     # collectstic inside build only makes sense when serving assets from the
     # container e.g. using whitenoise.
     && python manage.py collectstatic --noinput
