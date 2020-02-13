@@ -1,7 +1,7 @@
 FROM openup/docker-python-nodejs:python3.7-nodejs12
 
 ENV PYTHONUNBUFFERED 1
-NODE_ENV=production
+ENV NODE_ENV production
 
 RUN apt-get update \
   # dependencies for building Python packages
