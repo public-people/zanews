@@ -1,6 +1,7 @@
 FROM openup/docker-python-nodejs:python3.7-nodejs12
 
 ENV PYTHONUNBUFFERED 1
+NODE_ENV=production
 
 RUN apt-get update \
   # dependencies for building Python packages
@@ -22,15 +23,14 @@ RUN cd /tmp \
 
 COPY . /app
 
-RUN cd /app \
-    && yarn && yarn build \
-    # collectstic inside build only makes sense when serving assets from the
-    # container e.g. using whitenoise.
-    && python manage.py collectstatic --noinput
-
 RUN addgroup --system django \
     && adduser --system --ingroup django django
 RUN chown -R django:django /app
 USER django
 
 WORKDIR /app
+
+RUN yarn && yarn build \
+    # collectstic inside build only makes sense when serving assets from the
+    # container e.g. using whitenoise.
+    && DJANGO_SECRET_KEY=buildtime python manage.py collectstatic --noinput
