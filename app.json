@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "dokku": {
-      "predeploy": "yarn && yarn build",
-      "postdeploy": "python manage.py collectstatic --noinput"
-    }
-  }
-}
