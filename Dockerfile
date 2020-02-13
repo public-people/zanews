@@ -16,7 +16,7 @@ RUN apt-get update \
 RUN pip install pipenv
 
 # Copy, then install requirements before copying rest for a requirements cache layer.
-COPY Pipfile* /tmp
+COPY Pipfile* /tmp/
 RUN cd /tmp \
     && pipenv install --system
 
