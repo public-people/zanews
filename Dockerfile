@@ -15,8 +15,12 @@ RUN apt-get update \
 
 RUN pip install pipenv
 
+# Copy, then install requirements before copying rest for a requirements cache layer.
+COPY Pipfile* /tmp
+RUN cd /tmp \
+    && pipenv install --system
+
 COPY . /app
-RUN cd /app && pipenv install --system
 
 RUN addgroup --system django \
     && adduser --system --ingroup django django
