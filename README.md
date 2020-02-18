@@ -4,6 +4,7 @@
 South African News Archive
 ===============================
 
+
 Project Layout
 --------------
 
@@ -49,7 +50,7 @@ Development setup
 
 In one shell, run the frontend asset builder
 
-    docker-compose run --rm yarn dev
+    docker-compose run --rm web yarn dev
 
 
 In another shell, initialise and run the django app

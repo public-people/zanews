@@ -15,7 +15,7 @@ services:
       - DATABASE_URL=postgresql://zanews:devpassword@db/zanews
       - DJANGO_DEBUG=True
       - NODE_ENV=development
-      - DJANGO_DEBUG_TOOLBAR=${DJANGO_DEBUG_TOOLBAR}
+      - DJANGO_DEBUG_TOOLBAR
       - DJANGO_SECRET_KEY=not-secret-in-dev
       - DJANGO_WHITENOISE_AUTOREFRESH=True
       - TAG_MANAGER_ENABLED=False
