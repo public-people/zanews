@@ -12,7 +12,7 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgresql://zanews@db/zanews
+      - DATABASE_URL=postgresql://zanews:devpassword@db/zanews
       - DJANGO_DEBUG=True
       - NODE_ENV=development
       - DJANGO_DEBUG_TOOLBAR=${DJANGO_DEBUG_TOOLBAR}
@@ -24,6 +24,7 @@ services:
     image: postgres:11.6
     environment:
       - POSTGRES_USER=zanews
+      - POSTGRES_PASSWORD=devpassword
       - POSTGRES_DB=zanews
     volumes:
       - db-data:/var/lib/postgresql/data
