@@ -104,8 +104,8 @@ class CreateArticleTests(APITestCase):
 
         data["title"] = "Modified title"
         response = self.client.post(reverse("article-list"), data, format="json")
-        print(response.content)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertTrue("already exists" in str(response.data["published_url"][0]))
         self.assertEqual(models.Article.objects.count(), 1)
         self.assertEqual(models.Article.objects.get().title, "It happened!")
 
