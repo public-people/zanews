@@ -79,6 +79,36 @@ class CreateArticleTests(APITestCase):
         self.assertEqual(models.Article.objects.count(), 1)
         self.assertEqual(models.Article.objects.get().title, "It happened!")
 
+    def test_create_existing_article(self):
+        """
+        Return an error and don't update article on POST
+        """
+        token = Token.objects.get(user__username="authorised-user")
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
+        data = {
+            "publication": reverse(
+                "publication-detail", args=[models.Publication.objects.first().slug]
+            ),
+            "byline": "Fred Bloggs",
+            "body_html": "<p>A page body</p>",
+            "published_at": "2001-01-02T03:04:00",
+            "retrieved_at": "2002-03-04T05:06:00",
+            "spider_name": "wed_moon",
+            "title": "It happened!",
+            "published_url": "https://example.com/it-happened",
+        }
+        response = self.client.post(reverse("article-list"), data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(models.Article.objects.count(), 1)
+        self.assertEqual(models.Article.objects.get().title, "It happened!")
+
+        data["title"] = "Modified title"
+        response = self.client.post(reverse("article-list"), data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertTrue("already exists" in str(response.data["published_url"][0]))
+        self.assertEqual(models.Article.objects.count(), 1)
+        self.assertEqual(models.Article.objects.get().title, "It happened!")
+
     def test_no_perm_create_article_rejected(self):
         """
         Ensure an unauthorised user can not create a new article object.
